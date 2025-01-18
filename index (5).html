@@ -1,0 +1,407 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Magic Bank
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <!-- Login Page -->
+  <div class="min-h-screen flex items-center justify-center" id="loginPage">
+   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div class="flex justify-center mb-4">
+     <img alt="Magic Bank Logo" height="100" src="https://storage.googleapis.com/a1aa/image/g1mCXDaeUQM_5z0a5O3HGrHpvQF7oUpWtrj1Iv8pQ5w.jpg" width="100"/>
+    </div>
+    <h2 class="text-2xl font-bold text-center mb-6">
+     MAGIC BANK
+    </h2>
+    <form id="loginForm">
+     <div class="mb-4">
+      <label class="block text-gray-700" for="username">
+       Username
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="username" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="password">
+       Password
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="password" required="" type="password"/>
+     </div>
+     <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">
+      Login
+     </button>
+    </form>
+    <p class="text-center mt-4">
+     <a class="text-blue-500" href="#" id="createAccountLink">
+      Create a new account
+     </a>
+    </p>
+   </div>
+  </div>
+  <!-- Create Account Page -->
+  <div class="min-h-screen flex items-center justify-center hidden" id="createAccountPage">
+   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div class="flex justify-center mb-4">
+     <img alt="Magic Bank Logo" height="100" src="https://storage.googleapis.com/a1aa/image/g1mCXDaeUQM_5z0a5O3HGrHpvQF7oUpWtrj1Iv8pQ5w.jpg" width="100"/>
+    </div>
+    <h2 class="text-2xl font-bold text-center mb-6">
+     Create Account
+    </h2>
+    <form id="createAccountForm">
+     <div class="mb-4">
+      <label class="block text-gray-700" for="name">
+       Name
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="name" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="accountNumber">
+       Account Number
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="accountNumber" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="mobileNumber">
+       Mobile Number
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="mobileNumber" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="newUsername">
+       Username
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="newUsername" required="" type="text"/>
+     </div>
+     <div class="mb-4">
+      <label class="block text-gray-700" for="newPassword">
+       Password
+      </label>
+      <input class="w-full px-3 py-2 border rounded-lg" id="newPassword" required="" type="password"/>
+     </div>
+     <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">
+      Create Account
+     </button>
+    </form>
+    <p class="text-center mt-4">
+     <a class="text-blue-500" href="#" id="backToLoginLink">
+      Back to Login
+     </a>
+    </p>
+   </div>
+  </div>
+  <!-- Dashboard -->
+  <div class="min-h-screen hidden" id="dashboard">
+   <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+     <h2 class="text-2xl font-bold">
+      Welcome,
+      <span id="userName">
+      </span>
+     </h2>
+     <button class="bg-red-500 text-white py-2 px-4 rounded-lg" id="logoutButton">
+      Logout
+     </button>
+    </div>
+    <nav class="mb-6">
+     <ul class="flex space-x-4">
+      <li>
+       <a class="text-blue-500" href="#" id="homeLink">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="text-blue-500" href="#" id="accountDetailsLink">
+        Account Details
+       </a>
+      </li>
+      <li>
+       <a class="text-blue-500" href="#" id="transferFundsLink">
+        Transfer Funds
+       </a>
+      </li>
+      <li>
+       <a class="text-blue-500" href="#" id="transactionHistoryLink">
+        Transaction History
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <div class="hidden" id="homeSection">
+     <h3 class="text-xl font-bold mb-4">
+      Home
+     </h3>
+     <p>
+      Welcome to Magic Bank. Use the navigation links to manage your account.
+     </p>
+    </div>
+    <div class="hidden" id="accountDetailsSection">
+     <h3 class="text-xl font-bold mb-4">
+      Account Details
+     </h3>
+     <p>
+      Account Number:
+      <span id="accountNumberDisplay">
+       1234-****-****-5678
+      </span>
+      <button class="text-blue-500" id="toggleAccountNumber">
+       Show
+      </button>
+     </p>
+     <p>
+      Available Balance: $
+      <span id="availableBalance">
+       5000.00
+      </span>
+     </p>
+    </div>
+    <div class="hidden" id="transferFundsSection">
+     <h3 class="text-xl font-bold mb-4">
+      Transfer Funds
+     </h3>
+     <form id="transferFundsForm">
+      <div class="mb-4">
+       <label class="block text-gray-700" for="recipientName">
+        Recipient Name
+       </label>
+       <input class="w-full px-3 py-2 border rounded-lg" id="recipientName" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="recipientAccountNumber">
+        Recipient Account Number
+       </label>
+       <input class="w-full px-3 py-2 border rounded-lg" id="recipientAccountNumber" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="ifscCode">
+        IFSC Code
+       </label>
+       <input class="w-full px-3 py-2 border rounded-lg" id="ifscCode" required="" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700" for="amount">
+        Amount
+       </label>
+       <input class="w-full px-3 py-2 border rounded-lg" id="amount" required="" type="number"/>
+      </div>
+      <button class="w-full bg-blue-500 text-white py-2 rounded-lg" type="submit">
+       Transfer
+      </button>
+     </form>
+    </div>
+    <div class="hidden" id="transactionHistorySection">
+     <h3 class="text-xl font-bold mb-4">
+      Transaction History
+     </h3>
+     <ul class="space-y-4" id="transactionList">
+      <li class="bg-gray-100 p-4 rounded-lg shadow">
+       <p>
+        <strong>
+         Recipient:
+        </strong>
+        John Doe
+       </p>
+       <p>
+        <strong>
+         Amount:
+        </strong>
+        $100.00
+       </p>
+       <p>
+        <strong>
+         Date:
+        </strong>
+        2023-10-01
+       </p>
+      </li>
+      <li class="bg-gray-100 p-4 rounded-lg shadow">
+       <p>
+        <strong>
+         Recipient:
+        </strong>
+        Jane Smith
+       </p>
+       <p>
+        <strong>
+         Amount:
+        </strong>
+        $200.00
+       </p>
+       <p>
+        <strong>
+         Date:
+        </strong>
+        2023-09-25
+       </p>
+      </li>
+      <li class="bg-gray-100 p-4 rounded-lg shadow">
+       <p>
+        <strong>
+         Recipient:
+        </strong>
+        Bob Johnson
+       </p>
+       <p>
+        <strong>
+         Amount:
+        </strong>
+        $150.00
+       </p>
+       <p>
+        <strong>
+         Date:
+        </strong>
+        2023-09-20
+       </p>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <script>
+   const loginPage = document.getElementById('loginPage');
+        const createAccountPage = document.getElementById('createAccountPage');
+        const dashboard = document.getElementById('dashboard');
+        const createAccountLink = document.getElementById('createAccountLink');
+        const backToLoginLink = document.getElementById('backToLoginLink');
+        const loginForm = document.getElementById('loginForm');
+        const createAccountForm = document.getElementById('createAccountForm');
+        const userNameDisplay = document.getElementById('userName');
+        const accountNumberDisplay = document.getElementById('accountNumberDisplay');
+        const availableBalanceDisplay = document.getElementById('availableBalance');
+        const toggleAccountNumberButton = document.getElementById('toggleAccountNumber');
+        const homeLink = document.getElementById('homeLink');
+        const accountDetailsLink = document.getElementById('accountDetailsLink');
+        const transferFundsLink = document.getElementById('transferFundsLink');
+        const transactionHistoryLink = document.getElementById('transactionHistoryLink');
+        const homeSection = document.getElementById('homeSection');
+        const accountDetailsSection = document.getElementById('accountDetailsSection');
+        const transferFundsSection = document.getElementById('transferFundsSection');
+        const transactionHistorySection = document.getElementById('transactionHistorySection');
+        const transferFundsForm = document.getElementById('transferFundsForm');
+        const transactionList = document.getElementById('transactionList');
+        const logoutButton = document.getElementById('logoutButton');
+
+        let users = [];
+        let currentUser = null;
+
+        createAccountLink.addEventListener('click', () => {
+            loginPage.classList.add('hidden');
+            createAccountPage.classList.remove('hidden');
+        });
+
+        backToLoginLink.addEventListener('click', () => {
+            createAccountPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                currentUser = user;
+                userNameDisplay.textContent = user.name;
+                accountNumberDisplay.textContent = user.accountNumber.replace(/.(?=.{4})/g, '*');
+                availableBalanceDisplay.textContent = user.balance.toFixed(2);
+                loginPage.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+                showSection(homeSection);
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+
+        createAccountForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const newUser = {
+                name,
+                accountNumber,
+                mobileNumber,
+                username,
+                password,
+                balance: 5000.00,
+                transactions: []
+            };
+            users.push(newUser);
+            alert('Account created successfully');
+            createAccountPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+        });
+
+        toggleAccountNumberButton.addEventListener('click', () => {
+            if (accountNumberDisplay.textContent.includes('*')) {
+                accountNumberDisplay.textContent = currentUser.accountNumber;
+                toggleAccountNumberButton.textContent = 'Hide';
+            } else {
+                accountNumberDisplay.textContent = currentUser.accountNumber.replace(/.(?=.{4})/g, '*');
+                toggleAccountNumberButton.textContent = 'Show';
+            }
+        });
+
+        homeLink.addEventListener('click', () => showSection(homeSection));
+        accountDetailsLink.addEventListener('click', () => showSection(accountDetailsSection));
+        transferFundsLink.addEventListener('click', () => showSection(transferFundsSection));
+        transactionHistoryLink.addEventListener('click', () => showSection(transactionHistorySection));
+
+        transferFundsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const recipientName = document.getElementById('recipientName').value;
+            const recipientAccountNumber = document.getElementById('recipientAccountNumber').value;
+            const ifscCode = document.getElementById('ifscCode').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            if (amount > currentUser.balance) {
+                alert('Insufficient balance');
+                return;
+            }
+            currentUser.balance -= amount;
+            availableBalanceDisplay.textContent = currentUser.balance.toFixed(2);
+            const transaction = {
+                recipient: recipientName,
+                amount,
+                date: new Date().toISOString().split('T')[0]
+            };
+            currentUser.transactions.push(transaction);
+            const transactionItem = document.createElement('li');
+            transactionItem.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'shadow');
+            transactionItem.innerHTML = `
+                <p><strong>Recipient:</strong> ${transaction.recipient}</p>
+                <p><strong>Amount:</strong> $${transaction.amount.toFixed(2)}</p>
+                <p><strong>Date:</strong> ${transaction.date}</p>
+            `;
+            transactionList.appendChild(transactionItem);
+            alert('Funds transferred successfully');
+        });
+
+        logoutButton.addEventListener('click', () => {
+            currentUser = null;
+            dashboard.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+        });
+
+        function showSection(section) {
+            homeSection.classList.add('hidden');
+            accountDetailsSection.classList.add('hidden');
+            transferFundsSection.classList.add('hidden');
+            transactionHistorySection.classList.add('hidden');
+            section.classList.remove('hidden');
+        }
+  </script>
+ </body>
+</html>
