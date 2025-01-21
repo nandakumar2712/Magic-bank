@@ -1,332 +1,270 @@
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Magic Bank
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Banking App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
             font-family: 'Roboto', sans-serif;
         }
-  </style>
- </head>
- <body class="bg-gray-100">
-  <div class="min-h-screen flex items-center justify-center" id="app">
-   <!-- Login Page -->
-   <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md" id="login-page">
-    <div class="flex flex-col items-center mb-6">
-     <img alt="Magic Bank logo with a magical theme, featuring a wand and stars" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/thGF-ktl8aHlZv3Pawl9dMbW5a0VUczvFdsc_kC9WRg.jpg" width="100"/>
-     <h2 class="text-3xl font-bold mb-2">
-      Magic Bank
-     </h2>
-     <p class="text-gray-600">
-      Login
-     </p>
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 hidden" id="loginPage">
+        <img alt="Bank logo background" class="absolute inset-0 w-full h-full object-cover opacity-10" height="1080" src="https://storage.googleapis.com/a1aa/image/lNfJdUweefzunSuPz3IsUMKP1HLJeoXHpPXVSw3rzoDjam6gC.jpg" width="1920"/>
+        <div class="relative z-10 w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="username">Username</label>
+                    <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="username" type="text"/>
+                </div>
+                <div class="mb-4 relative">
+                    <label class="block text-sm font-medium text-gray-700" for="password">Password</label>
+                    <div class="relative">
+                        <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pr-10" id="password" type="password"/>
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" id="togglePassword"></i>
+                    </div>
+                </div>
+                <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700" type="submit">Login</button>
+            </form>
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Don't have an account?
+                <a class="text-indigo-600 hover:text-indigo-500" href="#" id="createAccountLink">Create one</a>
+            </p>
+        </div>
     </div>
-    <div class="mb-4">
-     <label class="block text-gray-700">
-      Username
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="login-username" type="text"/>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100" id="createAccountPage">
+        <img alt="Bank logo background" class="absolute inset-0 w-full h-full object-cover opacity-10" height="1080" src="https://storage.googleapis.com/a1aa/image/lNfJdUweefzunSuPz3IsUMKP1HLJeoXHpPXVSw3rzoDjam6gC.jpg" width="1920"/>
+        <div class="relative z-10 w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
+            <h2 class="text-2xl font-bold mb-6 text-center">Create Account</h2>
+            <form id="createAccountForm">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="name">Name</label>
+                    <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="name" type="text"/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="accountNumber">Account Number</label>
+                    <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="accountNumber" type="text"/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="mobileNumber">Mobile Number</label>
+                    <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="mobileNumber" type="text"/>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700" for="newUsername">Username</label>
+                    <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="newUsername" type="text"/>
+                </div>
+                <div class="mb-4 relative">
+                    <label class="block text-sm font-medium text-gray-700" for="newPassword">Password</label>
+                    <div class="relative">
+                        <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm pr-10" id="newPassword" type="password"/>
+                        <i class="fas fa-eye absolute right-3 top-3 cursor-pointer" id="toggleNewPassword"></i>
+                    </div>
+                </div>
+                <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700" type="submit">Create Account</button>
+            </form>
+            <p class="mt-4 text-center text-sm text-gray-600">
+                Already have an account?
+                <a class="text-indigo-600 hover:text-indigo-500" href="#" id="loginLink">Login</a>
+            </p>
+        </div>
     </div>
-    <div class="mb-6">
-     <label class="block text-gray-700">
-      Password
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="login-password" type="password"/>
+    <div class="min-h-screen bg-gray-100 hidden" id="dashboard">
+        <img alt="Bank logo background" class="absolute inset-0 w-full h-full object-cover opacity-10" height="1080" src="https://storage.googleapis.com/a1aa/image/lNfJdUweefzunSuPz3IsUMKP1HLJeoXHpPXVSw3rzoDjam6gC.jpg" width="1920"/>
+        <div class="relative z-10 max-w-7xl mx-auto p-8">
+            <h1 class="text-3xl font-bold mb-6">Welcome, <span id="userWelcome"></span></h1>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Account Details</h2>
+                    <p class="text-gray-700">Account Number: <span id="accountNumberDisplay"></span></p>
+                    <p class="text-gray-700">Available Balance: $<span id="availableBalance">0.00</span></p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Transfer Funds</h2>
+                    <form id="transferFundsForm">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700" for="recipientAccountNumber">Recipient Account Number</label>
+                            <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="recipientAccountNumber" type="text"/>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700" for="transferAmount">Amount</label>
+                            <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="transferAmount" type="number"/>
+                        </div>
+                        <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700" type="submit">Transfer</button>
+                    </form>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4">Transaction History</h2>
+                    <ul class="space-y-4" id="transactionHistory">
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 1: Deposit</span>
+                            <span>$100.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 2: Withdrawal</span>
+                            <span>$50.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 3: Transfer to Account 1234</span>
+                            <span>$200.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 4: Deposit</span>
+                            <span>$75.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 5: Transfer to Account 5678</span>
+                            <span>$150.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 6: Withdrawal</span>
+                            <span>$300.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 7: Deposit</span>
+                            <span>$25.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 8: Transfer to Account 9101</span>
+                            <span>$400.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 9: Withdrawal</span>
+                            <span>$60.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 10: Deposit</span>
+                            <span>$90.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 11: Transfer to Account 1121</span>
+                            <span>$120.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 12: Withdrawal</span>
+                            <span>$80.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 13: Deposit</span>
+                            <span>$110.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 14: Transfer to Account 3141</span>
+                            <span>$130.00</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Transaction 15: Withdrawal</span>
+                            <span>$140.00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onclick="login()">
-     Login
-    </button>
-    <p class="mt-4 text-center">
-     Don't have an account?
-     <a class="text-blue-500" href="#" onclick="showCreateAccountPage()">
-      Create one
-     </a>
-    </p>
-   </div>
-   <!-- Create Account Page -->
-   <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md hidden" id="create-account-page">
-    <h2 class="text-2xl font-bold mb-6 text-center">
-     Create Account
-    </h2>
-    <div class="mb-4">
-     <label class="block text-gray-700">
-      Name
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-name" type="text"/>
-    </div>
-    <div class="mb-4">
-     <label class="block text-gray-700">
-      Account Number
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-account-number" type="text"/>
-    </div>
-    <div class="mb-4">
-     <label class="block text-gray-700">
-      Mobile Number
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-mobile-number" type="text"/>
-    </div>
-    <div class="mb-4">
-     <label class="block text-gray-700">
-      Username
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-username" type="text"/>
-    </div>
-    <div class="mb-6">
-     <label class="block text-gray-700">
-      Password
-     </label>
-     <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="create-password" type="password"/>
-    </div>
-    <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onclick="createAccount()">
-     Create Account
-    </button>
-    <p class="mt-4 text-center">
-     Already have an account?
-     <a class="text-blue-500" href="#" onclick="showLoginPage()">
-      Login
-     </a>
-    </p>
-   </div>
-   <!-- Dashboard -->
-   <div class="w-full max-w-4xl p-8 bg-white rounded-lg shadow-md hidden" id="dashboard">
-    <div class="flex justify-between items-center mb-6">
-     <h2 class="text-2xl font-bold">
-      Dashboard
-     </h2>
-     <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600" onclick="logout()">
-      Logout
-     </button>
-    </div>
-    <div class="flex space-x-4 mb-6">
-     <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" onclick="showSection('home')">
-      Home
-     </button>
-     <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" onclick="showSection('account-details')">
-      Account Details
-     </button>
-     <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" onclick="showSection('transfer-funds')">
-      Transfer Funds
-     </button>
-     <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" onclick="showSection('transaction-history')">
-      Transaction History
-     </button>
-    </div>
-    <!-- Home Section -->
-    <div class="hidden" id="home">
-     <h3 class="text-xl font-bold mb-4">
-      Welcome to Magic Bank!
-     </h3>
-     <p>
-      Your one-stop solution for all your banking needs.
-     </p>
-    </div>
-    <!-- Account Details Section -->
-    <div class="hidden" id="account-details">
-     <h3 class="text-xl font-bold mb-4">
-      Account Details
-     </h3>
-     <p>
-      <strong>
-       Account Number:
-      </strong>
-      <span id="account-number">
-       **** **** **** 1234
-      </span>
-     </p>
-     <p>
-      <strong>
-       Available Balance:
-      </strong>
-      $
-      <span id="available-balance">
-       5000.00
-      </span>
-     </p>
-    </div>
-    <!-- Transfer Funds Section -->
-    <div class="hidden" id="transfer-funds">
-     <h3 class="text-xl font-bold mb-4">
-      Transfer Funds
-     </h3>
-     <div class="mb-4">
-      <label class="block text-gray-700">
-       Recipient Account Number
-      </label>
-      <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="transfer-account-number" type="text"/>
-     </div>
-     <div class="mb-4">
-      <label class="block text-gray-700">
-       Amount
-      </label>
-      <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="transfer-amount" type="number"/>
-     </div>
-     <button class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600" onclick="transferFunds()">
-      Transfer
-     </button>
-    </div>
-    <!-- Transaction History Section -->
-    <div class="hidden" id="transaction-history">
-     <h3 class="text-xl font-bold mb-4">
-      Transaction History
-     </h3>
-     <ul class="space-y-4" id="transaction-list">
-      <li class="p-4 bg-gray-100 rounded-lg shadow-md">
-       <p>
-        <strong>
-         Date:
-        </strong>
-        2023-10-01
-       </p>
-       <p>
-        <strong>
-         Amount:
-        </strong>
-        $100.00
-       </p>
-       <p>
-        <strong>
-         Type:
-        </strong>
-        Credit
-       </p>
-      </li>
-      <li class="p-4 bg-gray-100 rounded-lg shadow-md">
-       <p>
-        <strong>
-         Date:
-        </strong>
-        2023-09-25
-       </p>
-       <p>
-        <strong>
-         Amount:
-        </strong>
-        $50.00
-       </p>
-       <p>
-        <strong>
-         Type:
-        </strong>
-        Debit
-       </p>
-      </li>
-      <li class="p-4 bg-gray-100 rounded-lg shadow-md">
-       <p>
-        <strong>
-         Date:
-        </strong>
-        2023-09-20
-       </p>
-       <p>
-        <strong>
-         Amount:
-        </strong>
-        $200.00
-       </p>
-       <p>
-        <strong>
-         Type:
-        </strong>
-        Credit
-       </p>
-      </li>
-     </ul>
-    </div>
-   </div>
-  </div>
-  <script>
-   let users = [];
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const createAccountForm = document.getElementById('createAccountForm');
+        const transferFundsForm = document.getElementById('transferFundsForm');
+        const createAccountLink = document.getElementById('createAccountLink');
+        const loginLink = document.getElementById('loginLink');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleNewPassword = document.getElementById('toggleNewPassword');
+        const loginPage = document.getElementById('loginPage');
+        const createAccountPage = document.getElementById('createAccountPage');
+        const dashboard = document.getElementById('dashboard');
+        const userWelcome = document.getElementById('userWelcome');
+        const accountNumberDisplay = document.getElementById('accountNumberDisplay');
+        const availableBalance = document.getElementById('availableBalance');
+        const transactionHistory = document.getElementById('transactionHistory');
 
-        function showLoginPage() {
-            document.getElementById('login-page').classList.remove('hidden');
-            document.getElementById('create-account-page').classList.add('hidden');
-            document.getElementById('dashboard').classList.add('hidden');
-        }
+        let user = {
+            username: '',
+            accountNumber: '',
+            balance: 1000,
+            transactions: []
+        };
 
-        function showCreateAccountPage() {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('create-account-page').classList.remove('hidden');
-            document.getElementById('dashboard').classList.add('hidden');
-        }
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            user.username = document.getElementById('username').value;
+            userWelcome.textContent = user.username;
+            accountNumberDisplay.textContent = '****' + user.accountNumber.slice(-4);
+            availableBalance.textContent = user.balance.toFixed(2);
+            loginPage.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+        });
 
-        function showDashboard() {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('create-account-page').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
-            showSection('home');
-        }
+        createAccountForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            user.username = document.getElementById('newUsername').value;
+            user.accountNumber = document.getElementById('accountNumber').value;
+            user.balance = 1000;
+            user.transactions = [];
+            createAccountPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+            document.getElementById('username').value = user.username;
+            document.getElementById('password').value = document.getElementById('newPassword').value;
+        });
 
-        function showSection(section) {
-            document.getElementById('home').classList.add('hidden');
-            document.getElementById('account-details').classList.add('hidden');
-            document.getElementById('transfer-funds').classList.add('hidden');
-            document.getElementById('transaction-history').classList.add('hidden');
-            document.getElementById(section).classList.remove('hidden');
-        }
-
-        function createAccount() {
-            const name = document.getElementById('create-name').value;
-            const accountNumber = document.getElementById('create-account-number').value;
-            const mobileNumber = document.getElementById('create-mobile-number').value;
-            const username = document.getElementById('create-username').value;
-            const password = document.getElementById('create-password').value;
-
-            if (name && accountNumber && mobileNumber && username && password) {
-                users.push({ name, accountNumber, mobileNumber, username, password, balance: 5000, transactions: [] });
-                alert('Account created successfully!');
-                showLoginPage();
+        transferFundsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const recipientAccountNumber = document.getElementById('recipientAccountNumber').value;
+            const transferAmount = parseFloat(document.getElementById('transferAmount').value);
+            if (transferAmount > 0 && transferAmount <= user.balance) {
+                user.balance -= transferAmount;
+                user.transactions.push({ recipientAccountNumber, amount: transferAmount, type: 'Transfer' });
+                availableBalance.textContent = user.balance.toFixed(2);
+                const transactionItem = document.createElement('li');
+                transactionItem.classList.add('flex', 'justify-between', 'items-center');
+                transactionItem.innerHTML = `<span>Transfer to ${recipientAccountNumber}</span><span>$${transferAmount.toFixed(2)}</span>`;
+                transactionHistory.appendChild(transactionItem);
             } else {
-                alert('Please fill in all fields.');
+                alert('Invalid transfer amount');
             }
-        }
+        });
 
-        function login() {
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
+        createAccountLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginPage.classList.add('hidden');
+            createAccountPage.classList.remove('hidden');
+        });
 
-            const user = users.find(user => user.username === username && user.password === password);
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            createAccountPage.classList.add('hidden');
+            loginPage.classList.remove('hidden');
+        });
 
-            if (user) {
-                alert('Login successful!');
-                showDashboard();
-                document.getElementById('account-number').textContent = `**** **** **** ${user.accountNumber.slice(-4)}`;
-                document.getElementById('available-balance').textContent = user.balance.toFixed(2);
+        togglePassword.addEventListener('click', () => {
+            const passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                togglePassword.classList.remove('fa-eye');
+                togglePassword.classList.add('fa-eye-slash');
             } else {
-                alert('Invalid username or password.');
+                passwordField.type = 'password';
+                togglePassword.classList.remove('fa-eye-slash');
+                togglePassword.classList.add('fa-eye');
             }
-        }
+        });
 
-        function logout() {
-            showLoginPage();
-        }
-
-        function transferFunds() {
-            const recipientAccountNumber = document.getElementById('transfer-account-number').value;
-            const amount = parseFloat(document.getElementById('transfer-amount').value);
-
-            if (recipientAccountNumber && amount > 0) {
-                const user = users.find(user => user.accountNumber === recipientAccountNumber);
-
-                if (user) {
-                    user.balance += amount;
-                    user.transactions.push({ date: new Date().toISOString().split('T')[0], amount, type: 'Credit' });
-                    alert('Transfer successful!');
-                } else {
-                    alert('Recipient account not found.');
-                }
+        toggleNewPassword.addEventListener('click', () => {
+            const newPasswordField = document.getElementById('newPassword');
+            if (newPasswordField.type === 'password') {
+                newPasswordField.type = 'text';
+                toggleNewPassword.classList.remove('fa-eye');
+                toggleNewPassword.classList.add('fa-eye-slash');
             } else {
-                alert('Please enter a valid account number and amount.');
+                newPasswordField.type = 'password';
+                toggleNewPassword.classList.remove('fa-eye-slash');
+                toggleNewPassword.classList.add('fa-eye');
             }
-        }
-  </script>
- </body>
+        });
+    </script>
+</body>
 </html>
 
